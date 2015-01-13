@@ -1,2 +1,6 @@
 test/fixtures/* -text
 *.bat text eol=crlf
+tools/gyp/gyp.bat text eol=lf
+tools/gyp/samples/samples.bat text eol=lf
+tools/wrk/deps/luajit/src/msvcbuild.bat text eol=lf
+tools/wrk/depsps/luajit/src/xedkbuild.bat text eol=lf
