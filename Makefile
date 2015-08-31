@@ -384,10 +384,10 @@ ifeq ($(XZ), 0)
 endif
 
 doc-upload: tar
-	ssh $(STAGINGSERVER) "mkdir -p nodejs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	ssh $(STAGINGSERVER) "mkdir -p iojs/$(DISTTYPEDIR)/$(FULLVERSION)"
 	chmod -R ug=rw-x+X,o=r+X out/doc/
-	scp -pr out/doc/ $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/docs/
-	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/docs.done"
+	scp -pr out/doc/ $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/docs/
+	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/docs.done"
 
 $(TARBALL)-headers: config.gypi release-only
 	$(PYTHON) ./configure \
@@ -409,14 +409,14 @@ endif
 tar-headers: $(TARBALL)-headers
 
 tar-headers-upload: tar-headers
-	ssh $(STAGINGSERVER) "mkdir -p nodejs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	ssh $(STAGINGSERVER) "mkdir -p iojs/$(DISTTYPEDIR)/$(FULLVERSION)"
 	chmod 664 $(TARNAME)-headers.tar.gz
-	scp -p $(TARNAME)-headers.tar.gz $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz
-	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz.done"
+	scp -p $(TARNAME)-headers.tar.gz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz
+	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz.done"
 ifeq ($(XZ), 0)
 	chmod 664 $(TARNAME)-headers.tar.xz
-	scp -p $(TARNAME)-headers.tar.xz $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz
-	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz.done"
+	scp -p $(TARNAME)-headers.tar.xz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz
+	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz.done"
 endif
 
 $(BINARYTAR): release-only
