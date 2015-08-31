@@ -347,6 +347,7 @@ pkg: $(PKG)
 
 pkg-upload: pkg
 	ssh $(STAGINGSERVER) "mkdir -p iojs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	chmod 664 iojs-$(FULLVERSION).pkg
 	scp -p iojs-$(FULLVERSION).pkg $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).pkg
 	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).pkg.done"
 
@@ -373,16 +374,19 @@ tar: $(TARBALL)
 
 tar-upload: tar
 	ssh $(STAGINGSERVER) "mkdir -p iojs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	chmod 664 iojs-$(FULLVERSION).tar.gz
 	scp -p iojs-$(FULLVERSION).tar.gz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).tar.gz
 	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).tar.gz.done"
 ifeq ($(XZ), 0)
+	chmod 664 iojs-$(FULLVERSION).tar.xz
 	scp -p iojs-$(FULLVERSION).tar.xz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).tar.xz
 	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION).tar.xz.done"
 endif
 
 doc-upload: tar
 	ssh $(STAGINGSERVER) "mkdir -p nodejs/$(DISTTYPEDIR)/$(FULLVERSION)"
-	scp -r out/doc/ $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/docs/
+	chmod -R ug=rw-x+X,o=r+X out/doc/
+	scp -pr out/doc/ $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/docs/
 	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/docs.done"
 
 $(TARBALL)-headers: config.gypi release-only
@@ -406,9 +410,11 @@ tar-headers: $(TARBALL)-headers
 
 tar-headers-upload: tar-headers
 	ssh $(STAGINGSERVER) "mkdir -p nodejs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	chmod 664 $(TARNAME)-headers.tar.gz
 	scp -p $(TARNAME)-headers.tar.gz $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz
 	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.gz.done"
 ifeq ($(XZ), 0)
+	chmod 664 $(TARNAME)-headers.tar.xz
 	scp -p $(TARNAME)-headers.tar.xz $(STAGINGSERVER):nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz
 	ssh $(STAGINGSERVER) "touch nodejs/$(DISTTYPEDIR)/$(FULLVERSION)/$(TARNAME)-headers.tar.xz.done"
 endif
@@ -438,9 +444,11 @@ binary: $(BINARYTAR)
 
 binary-upload: binary
 	ssh $(STAGINGSERVER) "mkdir -p iojs/$(DISTTYPEDIR)/$(FULLVERSION)"
+	chmod 664 iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.gz
 	scp -p iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.gz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.gz
 	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.gz.done"
 ifeq ($(XZ), 0)
+	chmod 664 iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.xz
 	scp -p iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.xz $(STAGINGSERVER):iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.xz
 	ssh $(STAGINGSERVER) "touch iojs/$(DISTTYPEDIR)/$(FULLVERSION)/iojs-$(FULLVERSION)-$(OSTYPE)-$(ARCH).tar.xz.done"
 endif
