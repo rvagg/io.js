@@ -1,6 +1,6 @@
 # Node.js ChangeLog
 
-## 2015-09-15, io.js Version 3.3.1 @rvagg
+## 2015-09-15, io.js Version 3.3.1 (Maintenance), @rvagg
 
 ### Notable changes
 
@@ -712,7 +712,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 * Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion. [#894](https://github.com/nodejs/node/issues/894)
 * `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/node/issues/1435).
 
-## Commits
+### Commits
 
 * [[`030f8045c7`](https://github.com/nodejs/node/commit/030f8045c7)] - **deps**: fix out-of-band write in utf8 decoder (Fedor Indutny)
 * [[`0f09b8db28`](https://github.com/nodejs/node/commit/0f09b8db28)] - **doc**: don't recommend domains for error handling (Benjamin Gruenbaum) [#2056](https://github.com/nodejs/node/pull/2056)
@@ -722,7 +722,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 
 **Maintenance release**
 
-## Notable changes
+### Notable changes
 
 * **v8**: Fixed an out-of-band write in utf8 decoder. **This is an important security update** as it can be used to cause a denial of service attack.
 * **openssl**: Upgrade to 1.0.2b and 1.0.2c, introduces DHE man-in-the-middle protection (Logjam) and fixes malformed ECParameters causing infinite loop (CVE-2015-1788). See the [security advisory](https://www.openssl.org/news/secadv_20150611.txt) for full details. (Shigeki Ohtsu) [#1950](https://github.com/nodejs/io.js/pull/1950) [#1958](https://github.com/nodejs/io.js/pull/1958)
@@ -796,7 +796,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 * Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/nodejs/node/issues/894)
 * `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/node/issues/1435).
 
-## Commits
+### Commits
 
 * [[`9180140231`](https://github.com/nodejs/node/commit/9180140231)] - **_stream_wrap**: prevent use after free in TLS (Fedor Indutny) [#1910](https://github.com/nodejs/node/pull/1910)
 * [[`05a73c0f25`](https://github.com/nodejs/node/commit/05a73c0f25)] - **benchmark**: make concurrent requests configurable (Rich Trott) [#2068](https://github.com/nodejs/node/pull/2068)
@@ -859,7 +859,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 * Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/nodejs/node/issues/894)
 * `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/node/issues/1435).
 
-## Commits
+### Commits
 
 * [[`e56758a5e0`](https://github.com/nodejs/node/commit/e56758a5e0)] - **async-wrap**: add provider id and object info cb (Trevor Norris) [#1896](https://github.com/nodejs/node/pull/1896)
 * [[`d5637e67c9`](https://github.com/nodejs/node/commit/d5637e67c9)] - **buffer**: fix cyclic dependency with util (Brendan Ashworth) [#1988](https://github.com/nodejs/node/pull/1988)
@@ -963,7 +963,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 * Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/nodejs/node/issues/894)
 * `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/node/issues/1435).
 
-## Commits
+### Commits
 
 * [[`9c0a1b8cfc`](https://github.com/nodejs/node/commit/9c0a1b8cfc)] - **cluster**: wait on servers closing before disconnect (Oleg Elifantiev) [#1400](https://github.com/nodejs/node/pull/1400)
 * [[`0f68377f69`](https://github.com/nodejs/node/commit/0f68377f69)] - **crypto**: support FIPS mode of OpenSSL (Fedor Indutny) [#1890](https://github.com/nodejs/node/pull/1890)
@@ -1180,7 +1180,7 @@ See https://github.com/nodejs/node/labels/confirmed-bug for complete and current
 
 **Maintenance release**
 
-## Notable changes
+### Notable changes
 
 * **crypto**: significantly reduced memory usage for TLS (Fedor Indutny & Сковорода Никита Андреевич) [#1529](https://github.com/iojs/io.js/pull/1529)
 * **npm**: Upgrade npm to 2.9.0. See the [v2.8.4](https://github.com/npm/npm/releases/tag/v2.8.4) and [v2.9.0](https://github.com/npm/npm/releases/tag/v2.9.0) release notes for details. Summary:
