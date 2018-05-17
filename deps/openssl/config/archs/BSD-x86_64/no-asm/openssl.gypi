@@ -655,7 +655,6 @@
       '-DL_ENDIAN -Wall -O3 -pthread -D_THREAD_SAFE -D_REENTRANT',
     ],
     'openssl_ex_libs_BSD-x86_64': [
-      '',
     ],
   },
   'include_dirs': [

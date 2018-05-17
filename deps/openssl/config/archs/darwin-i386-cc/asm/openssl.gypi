@@ -684,7 +684,6 @@
       '-O3 -D_REENTRANT -arch i386 -DL_ENDIAN -fomit-frame-pointer',
     ],
     'openssl_ex_libs_darwin-i386-cc': [
-      '',
     ],
   },
   'include_dirs': [

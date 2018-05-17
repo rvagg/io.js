@@ -18,7 +18,6 @@
       'MD5_ASM',
       'AES_ASM',
       'VPAES_ASM',
-      'BSAES_ASM',
       'GHASH_ASM',
       'ECP_NISTZ256_ASM',
       'PADLOCK_ASM',
@@ -28,7 +27,6 @@
       '-O3 -D_REENTRANT -arch x86_64 -DL_ENDIAN -Wall',
     ],
     'openssl_ex_libs_darwin64-x86_64-cc': [
-      '',
     ],
     'openssl_cli_srcs_darwin64-x86_64-cc': [
       'openssl/apps/app_rand.c',

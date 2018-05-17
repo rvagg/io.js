@@ -12,7 +12,6 @@
       '-O3 -D_REENTRANT -arch i386 -DL_ENDIAN -fomit-frame-pointer',
     ],
     'openssl_ex_libs_darwin-i386-cc': [
-      '',
     ],
     'openssl_cli_srcs_darwin-i386-cc': [
       'openssl/apps/app_rand.c',

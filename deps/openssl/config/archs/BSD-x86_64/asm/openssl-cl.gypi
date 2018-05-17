@@ -28,7 +28,6 @@
       '-DL_ENDIAN -Wall -O3 -pthread -D_THREAD_SAFE -D_REENTRANT',
     ],
     'openssl_ex_libs_BSD-x86_64': [
-      '',
     ],
     'openssl_cli_srcs_BSD-x86_64': [
       'openssl/apps/app_rand.c',
