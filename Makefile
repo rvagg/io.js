@@ -18,8 +18,10 @@ PWD = $(CURDIR)
 
 ifdef JOBS
   PARALLEL_ARGS = -j $(JOBS)
+  PARALLEL_MAKE_ARGS = -j $(JOBS)
 else
   PARALLEL_ARGS = -J
+	PARALLEL_MAKE_ARGS =
 endif
 
 ifdef ENABLE_V8_TAP
@@ -503,7 +505,7 @@ test-ci: | clear-stalled build-addons build-js-native-api-tests build-node-api-t
 # Related CI jobs: most CI tests, excluding node-test-commit-arm-fanned
 build-ci:
 	$(PYTHON) ./configure --verbose $(CONFIG_FLAGS)
-	$(MAKE)
+	$(MAKE) $(PARALLEL_MAKE_ARGS)
 
 .PHONY: run-ci
 # Run by CI tests, exceptions:
