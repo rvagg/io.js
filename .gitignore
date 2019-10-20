@@ -15,6 +15,7 @@
 !.nycrc
 !.remarkrc
 !.travis.yml
+!.ci.yml
 
 core
 vgcore.*
