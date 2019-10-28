@@ -50,60 +50,60 @@ tests:
     label: Ubuntu 18.04 (Bionic) Container
     image: ubuntu1804
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   # Should be removed when 20.04 is added, or mid-2020, whichever comes first
   ubuntu1910:
     label: Ubuntu 19.10 (Eoan) Container
     image: ubuntu1910
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   ubuntu1604-gcc6:
     label: Ubuntu 16.04 (Bionic) with GCC 6 Container
     image: ubuntu1604-gcc6
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   debian9:
     label: Debian 9 (Stretch) Container
     image: debian9
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   centos7-devtoolset7:
     label: CentOS 7 with Devtoolset-7 Container
     image: centos7-devtoolset7
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   centos8-python2:
     label: CentOS 8 Container with Python 2
     image: centos8-python2
     execute: |
       export PYTHON=python2
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   # Should be removed mid-2020 when support ceases
   fedora30:
     label: Fedora 30 Container
     image: fedora30
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   # Should be removed mid-2021 or earlier
   alpine310:
     label: Alpine 3.10 Container
     image: alpine310
     execute: |
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
   zlib:
     label: Linux --shared-zlib
     image: ubuntu1804-zlib
     execute: |
       export CONFIG_FLAGS="$CONFIG_FLAGS --shared-zlib --shared-zlib-includes=${ZLIB12DIR}/include/ --shared-zlib-libpath=${ZLIB12DIR}/lib/"
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
       ZLIB_VERSION="$(out/Release/node -pe process.versions | grep zlib)"
       echo "zlib Version: $ZLIB_VERSION"
@@ -121,7 +121,7 @@ tests:
       export LD_LIBRARY_PATH=${OPENSSL102DIR}/lib/
       export PATH=${OPENSSL102DIR}/bin/:$PATH
       export CONFIG_FLAGS="$CONFIG_FLAGS --shared-openssl --shared-openssl-includes=${OPENSSL102DIR}/include/ --shared-openssl-libpath=${OPENSSL102DIR}/lib/"
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
       OPENSSL_VERSION="$(out/Release/node -pe 'process.versions.openssl')"
       echo "OpenSSL Version: $OPENSSL_VERSION"
@@ -145,7 +145,7 @@ tests:
     image: ubuntu1804
     execute: |
       export CONFIG_FLAGS="$CONFIG_FLAGS --without-intl"
-      make run-ci -j $JOBS V=
+      make run-ci --debug=a -j $JOBS V=
 
       INTL_OBJECT="$(out/Release/node -pe 'typeof Intl')"
       echo "Intl object type: $INTL_OBJECT"
@@ -168,7 +168,7 @@ tests:
     label: Linux Debug
     image: ubuntu1804
     execute: |
-      export CONFIG_FLAGS="$CONFIG_FLAGS --debug"
+      export CONFIG_FLAGS="$CONFIG_FLAGS --debug=a"
 
       # see https://github.com/nodejs/node/issues/17016
       sed -i 's/\[\$system==linux\]/[$system==linux]\ntest-error-reporting : PASS, FLAKY/g' test/parallel/parallel.status
@@ -177,7 +177,7 @@ tests:
       # see https://github.com/nodejs/node/issues/17018
       sed -i 's/\[\$system==linux\]/[$system==linux]\ntest-inspector-contexts : PASS, FLAKY/g' test/sequential/sequential.status
 
-      make build-ci -j $JOBS V=
+      make build-ci --debug=a -j $JOBS V=
 
       if ! [ -x out/Debug/node ]; then
         FAIL_MSG="No Debug executable"
