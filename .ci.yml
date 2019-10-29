@@ -53,8 +53,14 @@ tests:
     execute: |
       npx core-validate-commit -v
       case "$GIT_REMOTE_REF" in
-        (*[!0-9]*|'') npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/nodejs/node/commits/$GIT_REMOTE_REF" ;;  # Commit sha
-        (*) npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/nodejs/node/pulls/$GIT_REMOTE_REF/commits" ;; # PR Number
+        (refs/pull/[0-9][0-9]*/head)
+          prid=$(echo "refs/pull/30057/head" | cut -d/ -f3)
+          echo "Linting commits in pull request #{prid}"
+          npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/${GITHUB_ORG}/${REPO_NAME}/pulls/${prid}/commits"
+          ;;
+        (*)
+          npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/${GITHUB_ORG}/${REPO_NAME}/commits/${GIT_REMOTE_REF}"
+          ;;
       esac
 
   ubuntu1804:
