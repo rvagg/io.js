@@ -168,7 +168,7 @@ tests:
     label: Linux Debug
     image: ubuntu1804
     execute: |
-      export CONFIG_FLAGS="$CONFIG_FLAGS --debug=a"
+      export CONFIG_FLAGS="$CONFIG_FLAGS --debug"
 
       # see https://github.com/nodejs/node/issues/17016
       sed -i 's/\[\$system==linux\]/[$system==linux]\ntest-error-reporting : PASS, FLAKY/g' test/parallel/parallel.status
