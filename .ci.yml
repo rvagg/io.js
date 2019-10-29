@@ -24,6 +24,7 @@
 
 linux_x64_container_suite:
   - lint
+  - lint-commit
   - ubuntu1804
   - ubuntu1910
   - ubuntu1604-gcc6
@@ -45,6 +46,16 @@ tests:
       make lint-ci PYTHON=python2 || {
         cat test-eslint.tap | grep -v '^ok\|^TAP version 13\|^1\.\.' | sed '/^\s*$/d' &&
         exit 1; }
+
+  lint-commit:
+    label: Lint Git Commits
+    image: node-linter
+    execute: |
+      npx core-validate-commit -v
+      case "$GIT_REMOTE_REF" in
+        (*[!0-9]*|'') npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/nodejs/node/commits/$GIT_REMOTE_REF" ;;  # Commit sha
+        (*) npx core-validate-commit -o validate.tap -t "https://api.github.com/repos/nodejs/node/pulls/$GIT_REMOTE_REF/commits" ;; # PR Number
+      esac
 
   ubuntu1804:
     label: Ubuntu 18.04 (Bionic) Container
