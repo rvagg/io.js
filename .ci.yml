@@ -206,6 +206,6 @@ tests:
         exit 1
       fi
 
-      python tools/test.py --output-sync -j $JOBS JOBS=$JOBS -p tap --logfile test.tap \
+      python tools/test.py -j $JOBS -p tap --logfile test.tap \
         --mode=debug --flaky-tests=$FLAKY_TESTS \
         async-hooks default known_issues
