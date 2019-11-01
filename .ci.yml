@@ -93,7 +93,7 @@ tests:
     label: CentOS 7 with Devtoolset-7 Container
     image: centos7-devtoolset7
     execute: |
-      make run-ci --output-sync -j $JOBS JOBS=$JOBS V=
+      make run-ci -j $JOBS JOBS=$JOBS V=
 
   centos8-python2:
     label: CentOS 8 Container with Python 2
