@@ -24,7 +24,7 @@
 
 linux_x64_container_suite:
   - lint
-  - lint-commit
+  # - lint-commit - disabled, too agressive
   - ubuntu1804
   - ubuntu1910
   - ubuntu1604-gcc6
@@ -47,6 +47,7 @@ tests:
         cat test-eslint.tap | grep -v '^ok\|^TAP version 13\|^1\.\.' | sed '/^\s*$/d' &&
         exit 1; }
 
+  # too agressive, needs pr-url and reviewers
   lint-commit:
     label: Lint Git Commits
     image: node-linter
