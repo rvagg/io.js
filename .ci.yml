@@ -110,7 +110,7 @@ tests:
       make run-ci --output-sync -j $JOBS JOBS=$JOBS FLAKY_TESTS=$FLAKY_TESTS V=
 
   # Should be removed mid-2021 or earlier
-  lpine310:
+  alpine310:
     label: Alpine 3.10 Container
     image: alpine310
     execute: |
